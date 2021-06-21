@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{% block title %}FoodApp{% endblock title %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/webapp/css/bootstrap.min.css">
+  
+    <link href="/static/webapp/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' >
+      <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+      <link href='http://fonts.googleapis.com/css?family=Lobster+Two:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <script src="/static/webapp/js/wow.min.js"></script>
+    <link href="static/webapp/css/animate.css" rel='stylesheet' type='text-center/css' />
+
+    <style type="text/css">
+      .big-banner{
+        background-image: url('/static/webapp/images/slide_1.jpg');
+      }
+      .i-am-center{
+        margin-left:26%; max-width: 100%;
+      }
+      .borders{
+        background-color: blue;
+        border-radius: 10px;
+        padding: 20px;
+      }
+      .wrapper {
+        min-height: 100%;
+        height: 100%;
+        margin: 0 auto -155px; 
+    }
+      .footer, .push {
+        height: 155px; 
+    }
+    .body1{
+          background-color: #cccccc; /* Used if the image is unavailable */
+  height: 500px; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+      }
+    </style>
+  </head>
+  <body style="height:100%">
+    
+      {% comment %} <nav class="navbar navbar-expand-lg navbar-light bg-dark navbar-fixed-top">
+          <div class="container-fluid">
+             <div class="navbar-collapse collapse w-100 dual-collapse2 order-1 order-md-0">
+          <ul class="navbar-nav ml-auto text-center">
+              <li class="nav-item active">
+              </li>
+          </ul>
+      </div>
+      <div class="mx-auto my-2 order-0 order-md-1 position-relative">
+          <a class="mx-auto" href="#">
+              <img  src="/static/webapp/images/logo.png" style="height: 80px;" alt="Home" class="rounded-circle img-responsive">
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+      </div>
+      <div class="navbar-collapse collapse w-100 dual-collapse2 order-2 order-md-2">
+        <ul class="navbar-nav mr-auto text-center">
+            
+            {% if user.is_authenticated == False %}
+              <li class="nav-item">
+                  <a class="nav-link text-light" href="{% url 'login' %}"> &nbsp;<strong>LOGIN</strong> </a>
+              </li>
+              {% endif %}
+              <li class="nav-item">
+                <a class="nav-link text-light" href="{% url 'home'%}"> &nbsp;<strong>Home</strong> </a>
+            </li>
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                  <a class="nav-link text-light" href="{% url 'logout'%}"> &nbsp;<strong>LOGOUT</strong> </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link text-light" > &nbsp;<strong>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Welcome {{user.username}}</strong> </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="{% url 'cart' %}" > &nbsp;<strong>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cart<strong class="badge bg-danger">{{num}}</strong></strong> </a>
+            </li>
+            {% endif %}
+        </ul>
+      </div>
+  </div>
+  </nav>
+{% block content %}
+{% endblock %}
+
+</body>
+</html> {% endcomment %}
+   <head>
+    <title>Foodiezone</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nothing+You+Could+Do" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/webapp/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/static/webapp/css/animate1.css">
+    
+    <link rel="stylesheet" href="/static/webapp/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/static/webapp/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/static/webapp/css/magnific-popup.css">
+
+    <link rel="stylesheet" href="/static/webapp/css/aos.css">
+
+    <link rel="stylesheet" href="/static/webapp/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="/static/webapp/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="/static/webapp/css/jquery.timepicker.css">
+
+    
+    <link rel="stylesheet" href="/static/webapp/css/flaticon.css">
+    <link rel="stylesheet" href="/static/webapp/css/icomoon.css">
+    <link rel="stylesheet" href="/static/webapp/css/style1.css">
+  </head>
+  
+  	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="{% url 'home'%}"><span><img  src="/static/webapp/images/logo.png" style="height: 80px;" alt="Home" class="rounded-circle img-responsive"></span>FOODIEZONE</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+          {% if user.is_authenticated == True %}
+          <li class="nav-item"><a class="nav-link text-light" > <strong>
+                    Welcome {{user.username}}</strong> </a></li>
+            {% endif %}
+	          <li class="nav-item"><a href="{% url 'home'%}" class="nav-link">Home</a></li>
+            {% if user.is_authenticated == False %}
+	          <li class="nav-item"><a href="{% url 'login' %}" class="nav-link">Login</a></li>
+            {% endif %}
+            {% if user.is_authenticated == True %}
+	          <li class="nav-item"><a href="{% url 'logout'%}" class="nav-link">Log out</a></li> 
+	          <li class="nav-item"><a href="{% url 'cart' %}" class="nav-link"><strong>
+                  Cart<strong class="badge bg-danger">{{num}}</strong></strong></a></li>
+                  <li class="nav-item"><a href="{% url 'orders' %}" class="nav-link">Orders</a></li> 
+            {% endif %}
+	        </ul>
+	      </div>
+		  </div>
+	  </nav>
+    {% block content %}
+    {% endblock %}
+    </body>
+    </html>

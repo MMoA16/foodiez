@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<script type="text/javascript" src="{% static 'webapp/js/jquery.min.js' %}">
+</script>
+<script type="text/javascript" src="{% static 'webapp/js/bootstrap.min.js' %}"></script>
+<script>
+new WOW().init();
+</script>
+<script src="/static/webapp/js/simpleCart.min.js"> </script>
+<script type="text/javascript" src="/static/webapp/js/move-top.js"></script>
+<script type="text/javascript" src="/static/webapp/js/easing.js"></script>
+
+<script>
+  function myFunction(obj1,obj2,obj3,obj4,obj5,time)
+  {
+    var sel = document.getElementById('loca');
+    var opt = sel.options[sel.selectedIndex];
+    var cha = document.getElementById('chan')
+    if(opt.value == "keshwapur"){
+      var to=parseInt(obj1)+parseInt(time);
+      cha.innerHTML ="Delivery Time : "+to+" mins";
+    } 
+    else if(opt.value == "Vidyanagar"){
+      var to=parseInt(obj2)+parseInt(time);
+      cha.innerHTML ="Delivery Time : "+to+" mins";
+    } 
+    else if(opt.value == "Akshaypark"){
+      var to=parseInt(obj3)+parseInt(time);
+      cha.innerHTML ="Delivery Time : "+to+" mins";
+    } 
+    else if(opt.value == "OldHubli"){
+      var to=parseInt(obj4)+parseInt(time);
+      cha.innerHTML ="Delivery Time : "+to+" mins"; 
+    }
+    else if(opt.value == "Hosur"){
+      var to=parseInt(obj5)+parseInt(time);
+      cha.innerHTML ="Delivery Time : "+to+" mins"; 
+    }
+    else
+      cha.innerHTML ="Delivery Time : 0"; 
+  }
+  function check()
+  {
+    var sele = document.getElementById('loca');
+    var opt = sele.options[sele.selectedIndex];
+    if(opt.value == "none"){
+      alert("Please select the locatlity");
+      return false;
+    }
+    return true;
+  }
+</script>
+{% comment %} <br>
+      {% for i in items %}
+                    <div class="col-md-4">
+                    	<img src="{{ i.item.img.url }}"  class="img-responsive" >
+                    <a href="/deleteitem/{{i.id}}"><button type="submit" class="btn btn-lg">delete</button></a>
+                    <p>Name : {{i.item.name}} </p>
+                    <p>Quantity : {{i.quantity}}</p> 
+                  <p>Price : {{i.price}}</p>
+              </div>
+              {% empty %}
+      <h1>Cart is empty</h1>
+              <br>
+              {% endfor %}
+            {% if size != 0 %}
+            <h1>Total price : {{total}}</h1><br>
+            <h1>Preparation Time : {{time}}</h1><br>
+            <form action="{% url 'place' %}" method="POST" onsubmit="return check()">
+              {% csrf_token %}
+            <select name="local" id="loca" 
+            onchange="myFunction('{{loca.keshwapur}}','{{loca.Vidyanagar}}'
+            ,'{{loca.Akshaypark}}','{{loca.OldHubli}}','{{loca.Hosur}}','{{time}}');">
+              <option value="none" selected="selected">none</option>
+              <option value="keshwapur">keshwapur</option>
+              <option value="Vidyanagar">Vidyanagar</option>
+              <option value="Akshaypark">Akshaypark</option>
+              <option value="OldHubli">OldHubli</option>
+              <option value="Hosur">Hosur</option>
+            </select><br><br>
+            <h1 id="chan">Delivery time : </h1>
+            <button class="btn btn-success">Place order</button>
+          </form>
+            {% endif %}
+{% endblock %} {% endcomment %}
+<div class="cart">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 mt-5">
+                {% if items %}
+                <div class="table-responsive">
+                    <table class="table table-light">
+                        <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Total Pieces</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for cart in items %}
+                        <tr>
+                            <td>{{ cart.item.name }} <span class="badge badge-{{ cart.item.label_colour }}">{{ cart.item.labels }}</span></td>
+                            <td>{{ cart.price }}</td>
+                            <td>{{ cart.quantity }} pieces</td>
+                            <td><a class="btn btn-danger" href="/deleteitem/{{cart.id}}">Delete😢</a></td>
+                            <td><a class="btn btn-danger" href="/addi/{{cart.id}}">Add😃</a></td>
+                        </tr>
+                            {% endfor %}
+            
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <h4 class="text-center">Sorry, your cart is empty..Please add items!!!</h4>
+                {% endif %}
+            </div>
+            {% if size != 0 %}
+            <div class="col-sm-3 mt-5 mb-3">
+                <div class="content-section">
+                    <h3 class="text-center">Order Summary</h3>
+                      <ul class="list-group">
+                        <li class="list-group-item list-group-item-light text-center text-dark">Total: {{ total }}🤑</li>
+                        <li class="list-group-item list-group-item-light text-center text-dark">Number of Items: {{ num }}📦</li>
+                        <form action="{% url 'place' %}" method="POST" onsubmit="return check()">
+                          {% csrf_token %}
+                        <li class="list-group-item list-group-item-light text-center text-dark"><button type="submit" class="btn btn-info text-dark" >Place Order🤝</button></li>
+                        <li class="list-group-item list-group-item-light text-center"><a class="btn btn-warning text-dark" href="{% url 'home' %}">Continue Buying✌️</a></li>
+                        <li class="list-group-item list-group-item-light text-center text-dark">
+                        <select name="local" id="loca" 
+                        onchange="myFunction('{{loca.keshwapur}}','{{loca.Vidyanagar}}'
+                        ,'{{loca.Akshaypark}}','{{loca.OldHubli}}','{{loca.Hosur}}','{{time}}');">
+                          <option value="none" selected="selected">none</option>
+                          <option value="keshwapur">keshwapur</option>
+                          <option value="Vidyanagar">Vidyanagar</option>
+                          <option value="Akshaypark">Akshaypark</option>
+                          <option value="OldHubli">OldHubli</option>
+                          <option value="Hosur">Hosur</option>
+                        </select><br><br>
+                        <h5 id="chan" style="color:black">Delivery Time : </h5>
+                      </form></li>
+                      </ul>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

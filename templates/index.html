@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% for message in messages %}
+<div class="text-center alert alert-dismissible alert-danger">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    {{message}}
+    {% endfor %}
+</div>
+<div style="Position:relative">
+<div class="jumbotron big-banner" style="height: 500px; width: 100%; padding-top:100px;Position: relative" >
+	<div class="container " style="Position: relative">
+		<div class="row" style="Position: relative">
+			<div class="col"style="Position: relative">
+				<div class="col4 text-light " style="Position: relative">
+                              {% if user.is_authenticated == False %}
+                              <h1><strong>Feeling Hungry</strong></h1>
+                              <br>
+                              <h2 style="color: rgba(0, 0, 0, 0.952) !important; padding-left: 10px;Position: relative"><strong>Register Now and<br/> Order online</strong></h2>
+      <p style="color: rgba(0, 0, 0, 0.952) !important; padding-left: 10px;Position: relative"><button type="button" class="btn btn-success btn-lg" style="background-color:#0f0f0f;"><strong><a href="{% url 'registration' %}" class="text-light">Register</a></strong></button></p>
+      {% endif %}
+      {% if user.is_authenticated == True %}
+      <h1><strong style="Position: relative">Feeling Hungry</strong></h1>
+					<br/><h2 style="color: rgba(0, 0, 0, 0.952) !important; padding-left: 10px;Position: relative"><strong>Order now</br> From your favourite</br> restaurant</strong></h2>
+                              {% endif %}
+				</div>
+			<br>
+			</div>
+        <div class="col" style="Position: relative">
+          <div class="col4 text-light" style="Position: relative">
+            
+        </div>
+        <br>
+        <!--<button type="button" class="btn btn-success btn-lg"><strong><a href="{% url 'registration' %}" class="text-light">Join Us</a></strong></button>-->
+      </div>
+      </div>
+    </div>
+
+	</div>
+</div>
+
+<div class="container col-md-9">
+		<h2>Top Restaurants</h2>
+            <br>
+		<div class="row">
+      {% for i in resto %}
+               <div class="col-md-4">
+                <div class="card mb-5" style="height:305px; fit-content; width:253px;background-color:black">
+                    	<a href="/cuisines/{{i.id}}">
+                          <img src="{{ i.rimg.url }}" style="height: 200px; width:253px;">
+                          <div class="card-body text-center">      
+                          <button type="button" class="btn btn-success btn-lg text-center"><strong>{{ i.name }}</a></strong></button><br>
+                          {% if i.ratings == 5 %}
+                               <img src="/static/webapp/images/blackstar.png">
+                               <img  src="/static/webapp/images/blackstar.png">
+                               <img  src="/static/webapp/images/blackstar.png">
+                               <img  src="/static/webapp/images/blackstar.png">
+                               <img  src="/static/webapp/images/blackstar.png">
+                               {% elif i.ratings == 4%}
+                          <img  src="/static/webapp/images/blackstar.png">
+                          <img  src="/static/webapp/images/blackstar.png">
+                          <img  src="/static/webapp/images/blackstar.png">
+                          <img  src="/static/webapp/images/blackstar.png">
+                               {% endif %}
+                    </a>
+                    </div>
+                  </div>
+              </div>
+            {% endfor %}
+		</div>
+
+	</div>
+
+<br>
+<br>
+<br>
+
+				
+<script type="text/javascript" src="{% static 'webapp/js/jquery.min.js' %}">
+	</script>
+	<script type="text/javascript" src="{% static 'webapp/js/bootstrap.min.js' %}"></script>
+<script>
+	new WOW().init();
+</script>
+<script src="/static/webapp/js/simpleCart.min.js"> </script>
+<script type="text/javascript" src="/static/webapp/js/move-top.js"></script>
+<script type="text/javascript" src="/static/webapp/js/easing.js"></script>
+
+
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br>
+     <div class="container">
+            <div class="row">
+                {% for order in orders %}
+                 <div class="text-center col-lg-4 d-flex text-dark justify-content-center">
+                     <div class="card bg-light mb-3" style="min-width: 20rem;">  
+                        <div class="card-header"> <font color="black" face="Verdana, Geneva, sans-serif" size="+1"><b> {{order.rest.name}}</b></font></div>
+                        <div class="card-body">
+                            <div class="card-title">ITEMS : {{order.items |linebreaks}}<br></div>
+                         </div>
+                         Total : Rs.{{order.total}}
+                         <div class="card-footer">ORDERED ON : {{order.date}}</div>
+                       </div>
+                 </div>
+                 {% endfor %}
+        </div>
+    </div> 
+
+        {% comment %} <div class="row">
+            <div class="col-sm-12 mt-5">
+                
+                {% if orders %}
+                <h3 class="text-center">Past Orders</h3>
+                <div class="table-responsive">
+                    <table class="table table-light">
+                        <thead>
+                        <tr>
+                            <th scope="col">Ordered On</th>
+                            <th scope="col">Item</th>
+                            <th scope="col">Restaurant</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Order Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for cart in orders %}
+                        <tr>
+                            <td>{{ cart.date }}</td>
+                            <td>{{order.items |linebreaks}} <span class="badge badge-{{ cart.item.label_colour }}">{{ cart.item.labels }}</span></td>
+                            <td>{{ cart.rest.name }}</td>
+                            <td>{{ num }} pieces</td>
+                            <td>{{ cart.total }}</td>
+                            <td>Suceessful</td>
+                        </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <h4 class="text-center">Sorry, you have not ordered any item yet!!!</h4>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div> {% endcomment %}
+<script type="text/javascript" src="{% static 'webapp/js/jquery.min.js' %}">
+</script>
+<script type="text/javascript" src="{% static 'webapp/js/bootstrap.min.js' %}"></script>
+<script>
+new WOW().init();
+</script>
+<script src="/static/webapp/js/simpleCart.min.js"> </script>
+<script type="text/javascript" src="/static/webapp/js/move-top.js"></script>
+<script type="text/javascript" src="/static/webapp/js/easing.js"></script>
+
+{% endblock %}

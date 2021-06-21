@@ -1,0 +1,130 @@
+{% comment %}{% block content %}
+{% load static%}
+<link rel="stylesheet" type="text/css" href="/static/webapp/css/style5.css">  
+ </div> 
+
+<!--Login
+<div class="container py-5">
+  <h1>Login</h1><div class="panel-body">
+                        {% if error_message %}
+                            <p class="bg-danger p-d ml-b">{{ error_message }}</p>
+                        {% endif %}
+  <form method="POST">
+    {% csrf_token %}
+    {{ login_form }}
+    <button class="btn btn-primary" type="submit">Login</button>
+  </form>
+  <p class="text-center">Don't have an account? <a href="{% url 'registration' %}">Create an account</a>.</p>
+</div>-->
+<style type="text/css">
+      .big-banner1{
+        background-image: url('/static/webapp/images/back1.jpg');
+        background-size: cover;
+      }
+</style>
+<div class="jumbotron big-banner1" style="height:100%; width: 100%; padding-top:100px;">
+      <center>
+        <div class="login">
+  <div class="login-triangle"></div>
+  
+  <h2 class="login-header" style="background-color:#0f0f0f;">Log in</h2>
+        <form class="login-container" method="post">
+            {% csrf_token %}
+            <div class="panel-body">
+                        {% if error_message %}
+                            <p class="bg-danger p-d ml-b">{{ error_message }}</p>
+                        {% endif %}
+                        </div>
+            <p><input name="username" value="" type="text" class="form-control" placeholder="Username" required></p>
+    <p><input name="password" type="password" class="form-control" placeholder="Password" required/></p>
+    <p><input name="login" type="submit" value="Login" class="btn btn-success" style="background-color:#0f0f0f;"/> &nbsp;</p>
+    <a href="{% url 'registration' %}">Create an account</a>
+  </form>
+                
+  
+</div>
+            </div>
+{% endblock %}{% endcomment %}
+
+{% block content %}
+{% load static%}
+<link rel="stylesheet" type="text/css" href="/static/webapp/css/style5.css">  
+ </div> 
+
+<!--Login
+<div class="container py-5">
+  <h1>Login</h1><div class="panel-body">
+                        {% if error_message %}
+                            <p class="bg-danger p-d ml-b">{{ error_message }}</p>
+                        {% endif %}
+  <form method="POST">
+    {% csrf_token %}
+    {{ login_form }}
+    <button class="btn btn-primary" type="submit">Login</button>
+  </form>
+  <p class="text-center">Don't have an account? <a href="{% url 'registration' %}">Create an account</a>.</p>
+</div>-->
+<style type="text/css">
+      .big-banner1{
+        background-image: url('/static/webapp/images/login3.jpg');
+        height:100%;
+        background-position: center;
+  		  background-repeat: no-repeat;
+ 		    background-size: cover;
+        text-align:center;
+        margin:auto;
+        padding:0;
+      }
+</style>
+<div class="big-banner1" style="height:100%; width: 100%; padding-top:100px;">
+{% comment %} 
+      <center>
+        <div class="login">
+  <div class="login-triangle"></div>
+  
+  <h2 class="login-header" style="background-color:#0f0f0f;">Log in</h2>
+        <form class="login-container" method="post">
+            {% csrf_token %}
+            <div class="panel-body">
+                        {% if error_message %}
+                            <p class="bg-danger p-d ml-b">{{ error_message }}</p>
+                        {% endif %}
+                        </div>
+            <p><input name="username" value="" type="text" class="form-control" placeholder="Username" required></p>
+    <p><input name="password" type="password" class="form-control" placeholder="Password" required/></p>
+    <p><input name="login" type="submit" value="Login" class="btn btn-success" style="background-color:#0f0f0f;"/> &nbsp;</p>
+    <a style="color:blue" href="{% url 'registration' %}">Create an account</a>
+  </form>
+                
+  
+</div>
+</div> {% endcomment %}
+<html>
+
+<head>
+  <link rel="stylesheet" href="/static/webapp/css/style6.css">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign in</title>
+</head>
+
+<body>
+  <div class="main">
+    <p class="sign" align="center" style="color:#0f0f0f">Sign in</p>
+    {% if error_message %}
+
+                            <p class="bg-danger p-d ml-b">{{ error_message }}</p>
+                        {% endif %}
+    <form class="form1" method="post">
+    {% csrf_token %}
+      <input name="username" class="un " type="text" align="center" placeholder="Username">
+      <input name="password" class="pass" type="password" align="center" placeholder="Password">
+      <button type="submit" class="submit"  style="background-color:#0f0f0f" align="center">Sign in</button>
+      <p class="forgot" style="color:black" align="center"><a href="{% url 'registration' %}">Create an account</p>
+                
+    </div>
+     
+</body>
+
+</html>
+{% endblock %}
